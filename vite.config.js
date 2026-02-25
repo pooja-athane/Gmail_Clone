@@ -7,12 +7,10 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const isDev = command === 'serve'
   const isVercel = env.VERCEL === '1'
+  const base = isDev || isVercel ? '/' : '/Gmail_Clone/'
 
   return {
-    plugins: [
-      react(),
-      tailwindcss(),
-    ],
-    base: isDev || isVercel ? '/' : '/Gmail_Clone/',
-  }
+    plugins: [react(), tailwindcss()],
+    base: base,
+  };
 })
