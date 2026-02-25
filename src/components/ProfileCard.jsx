@@ -12,7 +12,7 @@ function ProfileCard() {
           P
         </div>
 
-        <p className="font-medium">athanepooja313@gmail.com</p>
+        <p className="font-medium">athanepooja@gmail.com</p>
         <p className="mt-2 text-lg font-semibold">Hi, Pooja!</p>
 
         <button className="mt-3 border border-gray-300 
