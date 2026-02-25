@@ -92,12 +92,12 @@
 
 
 import React from 'react'
+import { useParams } from 'react-router-dom';
 import EmailRow from './EmailRow';
 import { emails } from '../constants/emails';
 import EmailView from './EmailView';
 
 function EmailList({
-  activeSection,
   selectedEmail,
   setSelectedEmail,
   sentEmails,
@@ -106,15 +106,16 @@ function EmailList({
   setEditingDraft
 }) {
 
+  const { section } = useParams();
+  const activeSection = section.charAt(0).toUpperCase() + section.slice(1);
+
   let displayEmailornot;
 
   if (activeSection === "Sent") {
     displayEmailornot = sentEmails;
-  } 
-  else if (activeSection === "Drafts") {
+  } else if (activeSection === "Drafts") {
     displayEmailornot = draftEmails;
-  } 
-  else {
+  } else {
     displayEmailornot = emails;
   }
 
@@ -166,4 +167,3 @@ function EmailList({
 }
 
 export default EmailList;
-

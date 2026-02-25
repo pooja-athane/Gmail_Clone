@@ -1,15 +1,14 @@
-import react, { useState } from 'react'
+import { useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import EmailList from './components/EmailList'
 import Compose from './components/Compose'
 
-
 function App() {
 
   const [isOpen, setIsOpen] = useState(true)
-  const [activeSection, setactiveSection] = useState("Inbox")
   const [selectedEmail, setSelectedEmail] = useState(null)
   const [showCompose, setShowCompose] = useState(false)
   const [sentEmails, setSentEmails] = useState([])
@@ -17,11 +16,9 @@ function App() {
   const [editingDraft, setEditingDraft] = useState(null)
 
 
-
   function toggleSidebar() {
     setIsOpen(!isOpen)
   }
-
 
   return (
     <>
@@ -33,12 +30,9 @@ function App() {
 
           <Sidebar
             isOpen={isOpen}
-            toggleSidebar={toggleSidebar}
-            activeSection={activeSection}
-            setactiveSection={setactiveSection}
+            toggleSidebar={() => setIsOpen(!isOpen)}
             setSelectedEmail={setSelectedEmail}
             setShowCompose={setShowCompose}
-
           />
 
 
@@ -46,15 +40,19 @@ function App() {
             className={`flex-1 w-full bg-gray-50 overflow-y-auto transition-all duration-300 md:px-4"
               }`}
           >
-            <EmailList
-              activeSection={activeSection}
-              selectedEmail={selectedEmail}
-              setSelectedEmail={setSelectedEmail}
-              sentEmails={sentEmails}
-              draftEmails={draftEmails}
-              setShowCompose={setShowCompose}
-              setEditingDraft={setEditingDraft}
-            />
+            <Routes>
+              <Route path="/" element={<Navigate to="/inbox" />} />
+              <Route path="/:section" element={
+                <EmailList
+                  selectedEmail={selectedEmail}
+                  setSelectedEmail={setSelectedEmail}
+                  sentEmails={sentEmails}
+                  draftEmails={draftEmails}
+                  setShowCompose={setShowCompose}
+                  setEditingDraft={setEditingDraft}
+                />
+              } />
+            </Routes>
           </div>
 
           {showCompose && (
@@ -69,7 +67,6 @@ function App() {
         </div>
 
       </div>
-
     </>
   )
 }

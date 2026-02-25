@@ -1,24 +1,21 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({
   isOpen,
   toggleSidebar,
-  activeSection,
-  setactiveSection,
   setSelectedEmail,
   setShowCompose
 }) => {
 
   const items = [
-    { name: "Inbox", icon: `${import.meta.env.BASE_URL}assets/inbox.png` },
-    { name: "Sent", icon: `${import.meta.env.BASE_URL}assets/sent.png` },
-    { name: "Drafts", icon: `${import.meta.env.BASE_URL}assets/draft.png` },
+    { name: "Inbox", path: "/inbox", icon: `${import.meta.env.BASE_URL}assets/inbox.png` },
+    { name: "Sent", path: "/sent", icon: `${import.meta.env.BASE_URL}assets/sent.png` },
+    { name: "Drafts", path: "/drafts", icon: `${import.meta.env.BASE_URL}assets/draft.png` },
   ];
 
-  function handleClick(name) {
-    setactiveSection(name);
+  function handleLinkClick() {
     setSelectedEmail(null);
-
     if (window.innerWidth < 768) {
       toggleSidebar();
     }
@@ -55,19 +52,19 @@ const Sidebar = ({
 
           {/* Menu Items */}
           <div className="space-y-1">
-            {items.map((item) => (
-              <div
+            {items.map(item => (
+              <NavLink
                 key={item.name}
-                onClick={() => handleClick(item.name)}
-                className={`flex items-center py-2 px-3 rounded-r-full cursor-pointer gap-2
-                ${activeSection === item.name
-                    ? "bg-blue-100 font-medium"
-                    : "hover:bg-gray-200"
-                  }`}
+                to={item.path}
+                onClick={handleLinkClick}
+                className={({ isActive }) =>
+                  `flex items-center py-2 px-3 rounded-r-full cursor-pointer gap-2 ${isActive ? "bg-blue-100 font-medium" : "hover:bg-gray-200"
+                  }`
+                }
               >
                 <img src={item.icon} className="w-5 h-5" />
                 {isOpen && <span className="text-sm">{item.name}</span>}
-              </div>
+              </NavLink>
             ))}
           </div>
         </div>
