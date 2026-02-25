@@ -1,23 +1,17 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
+export default defineConfig(({ command }) => {
   const isDev = command === 'serve'
-  const isVercel = env.VERCEL === '1'
-  const base = isDev || isVercel ? '/' : '/Gmail_Clone/'
+  const isVercel = process.env.VERCEL === '1'
 
   return {
-    plugins: [react(), tailwindcss()],
-    base: base,
-    build: {
-      outDir: 'docs', // Output to 'docs' folder for GitHub Pages
-      rollupOptions: {
-        input: 'index.html', // Explicitly set index.html as entry
-      },
-    },
-  };
+    plugins: [
+      react(),
+      tailwindcss(),
+    ],
+    base: isDev || isVercel ? '/' : '/Gmail_Clone/',
+  }
 })
- 

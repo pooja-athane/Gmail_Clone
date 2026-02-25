@@ -1,21 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({
   isOpen,
   toggleSidebar,
+  activeSection,
+  setactiveSection,
   setSelectedEmail,
   setShowCompose
 }) => {
 
   const items = [
-    { name: "Inbox", path: "/inbox", icon: `${import.meta.env.BASE_URL}assets/inbox.png` },
-    { name: "Sent", path: "/sent", icon: `${import.meta.env.BASE_URL}assets/sent.png` },
-    { name: "Drafts", path: "/drafts", icon: `${import.meta.env.BASE_URL}assets/draft.png` },
+    // { name: "Inbox", icon: "src/assets/inbox.png" },
+    // { name: "Sent", icon: "src/assets/sent.png" },
+    // { name: "Drafts", icon: "src/assets/draft.png" },
+    { name: "Inbox", icon: `${import.meta.env.BASE_URL}assets/inbox.png` },
+    { name: "Sent", icon: `${import.meta.env.BASE_URL}assets/sent.png` },
+    { name: "Drafts", icon: `${import.meta.env.BASE_URL}assets/draft.png` },
   ];
 
-  function handleLinkClick() {
+  function handleClick(name) {
+    setactiveSection(name);
     setSelectedEmail(null);
+
     if (window.innerWidth < 768) {
       toggleSidebar();
     }
@@ -46,25 +52,26 @@ const Sidebar = ({
             className="flex items-center gap-3 bg-[#C2E7FF] h-12 px-4 rounded-md shadow-sm mb-4 "
             onClick={() => setShowCompose(true)}
           >
+            <img src="src/assets/edit.png" className="w-5 h-5" />
             <img src={`${import.meta.env.BASE_URL}assets/edit.png`} className="w-5 h-5" />
             {isOpen && <span className="text-sm font-medium">Compose</span>}
           </button>
 
           {/* Menu Items */}
           <div className="space-y-1">
-            {items.map(item => (
-              <NavLink
+            {items.map((item) => (
+              <div
                 key={item.name}
-                to={item.path}
-                onClick={handleLinkClick}
-                className={({ isActive }) =>
-                  `flex items-center py-2 px-3 rounded-r-full cursor-pointer gap-2 ${isActive ? "bg-blue-100 font-medium" : "hover:bg-gray-200"
-                  }`
-                }
+                onClick={() => handleClick(item.name)}
+                className={`flex items-center py-2 px-3 rounded-r-full cursor-pointer gap-2
+                ${activeSection === item.name
+                    ? "bg-blue-100 font-medium"
+                    : "hover:bg-gray-200"
+                  }`}
               >
                 <img src={item.icon} className="w-5 h-5" />
                 {isOpen && <span className="text-sm">{item.name}</span>}
-              </NavLink>
+              </div>
             ))}
           </div>
         </div>
@@ -84,3 +91,5 @@ const Sidebar = ({
 export default Sidebar;
 
     
+
+
