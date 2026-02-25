@@ -12,5 +12,12 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [react(), tailwindcss()],
     base: base,
+    build: {
+      outDir: 'docs', // Output to 'docs' folder for GitHub Pages
+      rollupOptions: {
+        input: 'index.html', // Explicitly set index.html as entry
+      },
+    },
   };
 })
+ 
