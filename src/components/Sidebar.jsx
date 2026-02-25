@@ -52,7 +52,7 @@ const Sidebar = ({
             className="flex items-center gap-3 bg-[#C2E7FF] h-12 px-4 rounded-md shadow-sm mb-4 "
             onClick={() => setShowCompose(true)}
           >
-            <img src="src/assets/edit.png" className="w-5 h-5" />
+            {/* <img src={`${import.meta.env.BASE_URL}assets/edit.png`} className="w-5 h-5" /> */}
             <img src={`${import.meta.env.BASE_URL}assets/edit.png`} className="w-5 h-5" />
             {isOpen && <span className="text-sm font-medium">Compose</span>}
           </button>
