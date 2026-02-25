@@ -173,13 +173,13 @@ function Header({ toggleSidebar, setSelectedEmail }) {
         {/* LEFT */}
         <div className="flex items-center gap-4">
           <img
-            src="src/assets/menu_logo.png"
+            src={`${import.meta.env.BASE_URL}assets/menu_logo.png`}
             alt="menu"
             className="cursor-pointer"
             onClick={toggleSidebar}
           />
           <img
-            src="src/assets/gmail_logo.png"
+            src={`${import.meta.env.BASE_URL}assets/gmail_logo.png`}
             alt="gmail"
             className="h-[30px] md:h-[35px]"
           />
@@ -188,7 +188,7 @@ function Header({ toggleSidebar, setSelectedEmail }) {
         {/* SEARCH DESKTOP */}
         <div className="hidden md:flex relative items-center bg-[#EAF1FB] px-4 py-2 rounded-full 
                         w-full max-w-[550px] mx-4">
-          <img src="src/assets/search.png" className="mr-3 cursor-pointer" />
+          <img src={`${import.meta.env.BASE_URL}assets/search.png`} className="mr-3 cursor-pointer" />
           <input
             type="text"
             placeholder="Search mail"
@@ -207,19 +207,19 @@ function Header({ toggleSidebar, setSelectedEmail }) {
         <div className="flex items-center gap-2 relative">
 
           <div className="icon-wrapper hidden sm:flex">
-            <img src="src/assets/help.png" className="w-5 md:w-6" />
+            <img src={`${import.meta.env.BASE_URL}assets/help.png`} className="w-5 md:w-6" />
           </div>
 
           <div className="icon-wrapper hidden sm:flex">
-            <img src="src/assets/setting.png" className="w-5 md:w-6" />
+            <img src={`${import.meta.env.BASE_URL}assets/setting.png`} className="w-5 md:w-6" />
           </div>
 
           <div className="icon-wrapper hidden sm:flex">
-            <img src="src/assets/gemini.png" className="w-5" />
+            <img src={`${import.meta.env.BASE_URL}assets/gemini.png`} className="w-5" />
           </div>
 
           <div className="icon-wrapper hidden sm:flex">
-            <img src="src/assets/apps.png" className="w-5 md:w-6" />
+            <img src={`${import.meta.env.BASE_URL}assets/apps.png`} className="w-5 md:w-6" />
           </div>
 
           {/* PROFILE */}

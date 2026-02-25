@@ -10,9 +10,9 @@ const Sidebar = ({
 }) => {
 
   const items = [
-    { name: "Inbox", icon: "src/assets/inbox.png" },
-    { name: "Sent", icon: "src/assets/sent.png" },
-    { name: "Drafts", icon: "src/assets/draft.png" },
+    { name: "Inbox", icon: `${import.meta.env.BASE_URL}assets/inbox.png` },
+    { name: "Sent", icon: `${import.meta.env.BASE_URL}assets/sent.png` },
+    { name: "Drafts", icon: `${import.meta.env.BASE_URL}assets/draft.png` },
   ];
 
   function handleClick(name) {
@@ -49,7 +49,7 @@ const Sidebar = ({
             className="flex items-center gap-3 bg-[#C2E7FF] h-12 px-4 rounded-md shadow-sm mb-4 "
             onClick={() => setShowCompose(true)}
           >
-            <img src="src/assets/edit.png" className="w-5 h-5" />
+            <img src={`${import.meta.env.BASE_URL}assets/edit.png`} className="w-5 h-5" />
             {isOpen && <span className="text-sm font-medium">Compose</span>}
           </button>
 
@@ -87,5 +87,3 @@ const Sidebar = ({
 export default Sidebar;
 
     
-
-
