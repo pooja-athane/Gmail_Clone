@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+.icon-wrapper {
+  @apply h-10 w-10 flex items-center justify-center
+         rounded-full cursor-pointer
+         hover:bg-gray-100 hover:shadow-md transition;
+}
